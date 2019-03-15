@@ -97,6 +97,10 @@ if(YAML_CPP_BUILD_CONTRIB)
     src/contrib/graphbuilderadapter.h
     src/contrib/graphbuilderadapter.cpp
   )
+else()
+  target_compile_definitions(yaml-cpp
+    PUBLIC YAML_CPP_NO_CONTRIB
+  )
 endif()
 
 target_include_directories(yaml-cpp
@@ -111,29 +115,27 @@ set_target_properties(yaml-cpp PROPERTIES
   PROJECT_LABEL "yaml-cpp ${LABEL_SUFFIX}"
 )
 
-if(YAML_CPP_INSTALL)
+install(
+  TARGETS yaml-cpp
+  EXPORT yaml-cpp-targets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+)
+if(YAML_CPP_BUILD_CONTRIB)
   install(
-    TARGETS yaml-cpp
-    EXPORT yaml-cpp-targets
-    RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
+    DIRECTORY include/yaml-cpp
+    DESTINATION include
   )
-  if(YAML_CPP_BUILD_CONTRIB)
-    install(
-      DIRECTORY include/yaml-cpp
-      DESTINATION include
-    )
-  else()
-    install(
-      DIRECTORY include/yaml-cpp
-      DESTINATION include
-      PATTERN "contrib" EXCLUDE
-    )
-  endif()
+else()
   install(
-    EXPORT yaml-cpp-targets
-    NAMESPACE yaml-cpp::
-    DESTINATION lib/cmake/yaml-cpp
+    DIRECTORY include/yaml-cpp
+    DESTINATION include
+    PATTERN "contrib" EXCLUDE
   )
 endif()
+install(
+  EXPORT yaml-cpp-targets
+  NAMESPACE yaml-cpp::
+  DESTINATION lib/cmake/yaml-cpp
+)
