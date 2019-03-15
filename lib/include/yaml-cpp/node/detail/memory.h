@@ -9,7 +9,7 @@
 
 #include <set>
 
-#include "yaml-cpp/dll.h"
+#include "yaml-cpp/yaml-cpp_export.h"
 #include "yaml-cpp/node/ptr.h"
 
 namespace YAML {
@@ -20,7 +20,7 @@ class node;
 
 namespace YAML {
 namespace detail {
-class YAML_CPP_API memory {
+class YAML_CPP_EXPORT memory {
  public:
   memory() : m_nodes{} {}
   node& create_node();
@@ -31,7 +31,7 @@ class YAML_CPP_API memory {
   Nodes m_nodes;
 };
 
-class YAML_CPP_API memory_holder {
+class YAML_CPP_EXPORT memory_holder {
  public:
   memory_holder() : m_pMemory(new memory) {}
 

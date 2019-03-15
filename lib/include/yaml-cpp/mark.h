@@ -7,10 +7,10 @@
 #pragma once
 #endif
 
-#include "yaml-cpp/dll.h"
+#include "yaml-cpp/yaml-cpp_export.h"
 
 namespace YAML {
-struct YAML_CPP_API Mark {
+struct YAML_CPP_EXPORT Mark {
   Mark() : pos(0), line(0), column(0) {}
 
   static const Mark null_mark() { return Mark(-1, -1, -1); }

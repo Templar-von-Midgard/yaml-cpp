@@ -1,14 +1,18 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 
-add_sources(parse.cpp)
+string(APPEND CMAKE_CXX_FLAGS " -Wno-unused-parameter")
+
 add_executable(parse parse.cpp)
-target_link_libraries(parse yaml-cpp)
+target_link_libraries(parse
+  PRIVATE yaml-cpp
+)
 
-add_sources(sandbox.cpp)
 add_executable(sandbox sandbox.cpp)
-target_link_libraries(sandbox yaml-cpp)
+target_link_libraries(sandbox
+  PRIVATE yaml-cpp
+)
 
-add_sources(read.cpp)
 add_executable(read read.cpp)
-target_link_libraries(read yaml-cpp)
-
+target_link_libraries(read
+  PRIVATE yaml-cpp
+)

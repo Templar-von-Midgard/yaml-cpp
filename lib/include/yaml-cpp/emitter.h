@@ -13,7 +13,7 @@
 #include <string>
 
 #include "yaml-cpp/binary.h"
-#include "yaml-cpp/dll.h"
+#include "yaml-cpp/yaml-cpp_export.h"
 #include "yaml-cpp/emitterdef.h"
 #include "yaml-cpp/emittermanip.h"
 #include "yaml-cpp/null.h"
@@ -27,7 +27,7 @@ struct _Null;
 namespace YAML {
 class EmitterState;
 
-class YAML_CPP_API Emitter {
+class YAML_CPP_EXPORT Emitter {
  public:
   Emitter();
   explicit Emitter(std::ostream& stream);

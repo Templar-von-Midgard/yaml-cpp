@@ -7,7 +7,7 @@
 #pragma once
 #endif
 
-#include "yaml-cpp/dll.h"
+#include "yaml-cpp/yaml-cpp_export.h"
 #include <list>
 #include <utility>
 #include <vector>

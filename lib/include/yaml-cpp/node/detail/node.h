@@ -7,7 +7,7 @@
 #pragma once
 #endif
 
-#include "yaml-cpp/dll.h"
+#include "yaml-cpp/yaml-cpp_export.h"
 #include "yaml-cpp/emitterstyle.h"
 #include "yaml-cpp/node/detail/node_ref.h"
 #include "yaml-cpp/node/ptr.h"

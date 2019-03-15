@@ -1,0 +1,11 @@
+include(FeatureSummary)
+include(${CMAKE_CURRENT_LIST_DIR}/RequiredVariable.cmake)
+
+function(add_feature_option)
+  cmake_parse_arguments(afo "" "NAME;FEATURE;DEFAULT" "" ${ARGN})
+  required_variable(NAME PREFIX afo)
+  required_variable(FEATURE PREFIX afo)
+  required_variable(DEFAULT PREFIX afo)
+  option(${afo_NAME} "${afo_DESCRIPTION}" ${afo_DEFAULT})
+  add_feature_info("${afo_FEATURE}" ${afo_NAME} "option: ${afo_NAME}")
+endfunction()

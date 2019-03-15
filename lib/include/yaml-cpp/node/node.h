@@ -9,7 +9,7 @@
 
 #include <stdexcept>
 
-#include "yaml-cpp/dll.h"
+#include "yaml-cpp/yaml-cpp_export.h"
 #include "yaml-cpp/emitterstyle.h"
 #include "yaml-cpp/mark.h"
 #include "yaml-cpp/node/detail/bool_type.h"
@@ -26,7 +26,7 @@ struct iterator_value;
 }  // namespace YAML
 
 namespace YAML {
-class YAML_CPP_API Node {
+class YAML_CPP_EXPORT Node {
  public:
   friend class NodeBuilder;
   friend class NodeEvents;
@@ -134,9 +134,9 @@ class YAML_CPP_API Node {
   mutable detail::node* m_pNode;
 };
 
-YAML_CPP_API bool operator==(const Node& lhs, const Node& rhs);
+YAML_CPP_EXPORT bool operator==(const Node& lhs, const Node& rhs);
 
-YAML_CPP_API Node Clone(const Node& node);
+YAML_CPP_EXPORT Node Clone(const Node& node);
 
 template <typename T>
 struct convert;

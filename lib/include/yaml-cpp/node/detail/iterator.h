@@ -7,7 +7,7 @@
 #pragma once
 #endif
 
-#include "yaml-cpp/dll.h"
+#include "yaml-cpp/yaml-cpp_export.h"
 #include "yaml-cpp/node/detail/node_iterator.h"
 #include "yaml-cpp/node/node.h"
 #include "yaml-cpp/node/ptr.h"
