@@ -10,7 +10,7 @@
 #include <ios>
 #include <memory>
 
-#include "yaml-cpp/dll.h"
+#include "yaml-cpp/yaml-cpp_export.h"
 
 namespace YAML {
 class EventHandler;
@@ -23,7 +23,7 @@ struct Token;
  * A parser turns a stream of bytes into one stream of "events" per YAML
  * document in the input stream.
  */
-class YAML_CPP_API Parser {
+class YAML_CPP_EXPORT Parser {
  public:
   /** Constructs an empty parser (with no input. */
   Parser();

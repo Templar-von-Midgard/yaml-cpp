@@ -4,7 +4,6 @@ add_library(yaml-cpp)
 target_sources(yaml-cpp PRIVATE
   include/yaml-cpp/anchor.h
   include/yaml-cpp/binary.h
-  include/yaml-cpp/dll.h
   include/yaml-cpp/emitfromevents.h
   include/yaml-cpp/emitter.h
   include/yaml-cpp/emitterdef.h
@@ -103,15 +102,26 @@ else()
   )
 endif()
 
+include(GenerateExportHeader)
+generate_export_header(yaml-cpp)
+configure_file(
+  ${CMAKE_CURRENT_BINARY_DIR}/yaml-cpp_export.h
+  ${CMAKE_CURRENT_BINARY_DIR}/include/yaml-cpp/yaml-cpp_export.h
+  COPYONLY
+)
+
 target_include_directories(yaml-cpp
   PUBLIC $<INSTALL_INTERFACE:include>
          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  PRIVATE ${CMAKE_CURRENT_BINARY_DIR}
+         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
+  PRIVATE src
 )
 
 set_target_properties(yaml-cpp PROPERTIES
   VERSION ${YAML_CPP_VERSION}
   SOVERSION "${YAML_CPP_VERSION_MAJOR}.${YAML_CPP_VERSION_MINOR}"
+  CXX_VISIBILITY_PRESET "hidden"
+  VISIBILITY_INLINES_HIDDEN ON
   PROJECT_LABEL "yaml-cpp ${LABEL_SUFFIX}"
 )
 
@@ -134,6 +144,10 @@ else()
     PATTERN "contrib" EXCLUDE
   )
 endif()
+install(
+  DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/yaml-cpp
+  DESTINATION include
+)
 install(
   EXPORT yaml-cpp-targets
   NAMESPACE yaml-cpp::

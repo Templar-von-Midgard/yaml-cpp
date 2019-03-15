@@ -13,7 +13,7 @@
 #include <utility>
 #include <vector>
 
-#include "yaml-cpp/dll.h"
+#include "yaml-cpp/yaml-cpp_export.h"
 #include "yaml-cpp/node/detail/node_iterator.h"
 #include "yaml-cpp/node/iterator.h"
 #include "yaml-cpp/node/ptr.h"
@@ -27,7 +27,7 @@ class node;
 
 namespace YAML {
 namespace detail {
-class YAML_CPP_API node_data {
+class YAML_CPP_EXPORT node_data {
  public:
   node_data();
   node_data(const node_data&) = delete;

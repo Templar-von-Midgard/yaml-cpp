@@ -7,20 +7,20 @@
 #pragma once
 #endif
 
-#include "yaml-cpp/dll.h"
+#include "yaml-cpp/yaml-cpp_export.h"
 #include <string>
 
 namespace YAML {
 class Node;
 
-struct YAML_CPP_API _Null {};
+struct YAML_CPP_EXPORT _Null {};
 inline bool operator==(const _Null&, const _Null&) { return true; }
 inline bool operator!=(const _Null&, const _Null&) { return false; }
 
-YAML_CPP_API bool IsNull(const Node& node);  // old API only
-YAML_CPP_API bool IsNullString(const std::string& str);
+YAML_CPP_EXPORT bool IsNull(const Node& node);  // old API only
+YAML_CPP_EXPORT bool IsNullString(const std::string& str);
 
-extern YAML_CPP_API _Null Null;
+extern YAML_CPP_EXPORT _Null Null;
 }
 
 #endif  // NULL_H_62B23520_7C8E_11DE_8A39_0800200C9A66

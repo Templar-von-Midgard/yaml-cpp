@@ -7,21 +7,12 @@ if(MSVC)
   set(CMAKE_STATIC_LIBRARY_PREFIX "")
 endif()
 
-ExternalProject_Add(googletest_project
-  SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/gtest-1.8.0"
-  INSTALL_DIR "${CMAKE_CURRENT_BINARY_DIR}/prefix"
-  CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>"
-             "-DBUILD_GMOCK=ON"
-             "-Dgtest_force_shared_crt=ON"
+set(BUILD_GMOCK ON)
+add_subdirectory(gtest-1.8.0)
+target_include_directories(gmock
+  INTERFACE gtest-1.8.0/googletest/include
+            gtest-1.8.0/googlemock/include
 )
-
-add_library(gmock IMPORTED UNKNOWN)
-set_target_properties(gmock PROPERTIES
-  IMPORTED_LOCATION ${PROJECT_BINARY_DIR}/test/prefix/lib/${CMAKE_STATIC_LIBRARY_PREFIX}gmock${CMAKE_STATIC_LIBRARY_SUFFIX}
-  INTERFACE_INCLUDE_DIRECTORIES "${PROJECT_BINARY_DIR}/test/prefix/include"
-  INTERFACE_SYSTEM_INCLUDE_DIRECTORIES "${PROJECT_BINARY_DIR}/test/prefix/include"
-)
-add_dependencies(gmock googletest_project)
 
 find_package(Threads)
 
@@ -60,8 +51,6 @@ target_link_libraries(run-tests
           gmock
           Threads::Threads
 )
-
-add_dependencies(run-tests googletest_project)
 
 add_test(
   NAME yaml-test
